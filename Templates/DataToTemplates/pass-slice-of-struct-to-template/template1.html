@@ -1,0 +1,19 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Hello Bond!</title>
+</head>
+<body>
+{{$slicestructfrommain := .}}
+<h1>Hello My Children </h1>
+<ul>
+    {{range $key, $singlestruct := $slicestructfrommain}}
+    <li>{{$singlestruct.Name}} {{$singlestruct.Age}}</li>
+    {{end}}
+</ul>
+
+</body>
+</html>
+

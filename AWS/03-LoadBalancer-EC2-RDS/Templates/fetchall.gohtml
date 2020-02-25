@@ -1,0 +1,52 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Hello Customers</title>
+    <style>
+        table {
+            font-family: arial, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        td, th {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+
+        tr:nth-child(even) {
+            background-color: #dddddd;
+        }
+    </style>
+</head>
+<body>
+{{$slicestructfrommain := .}}
+<h1>Full List of Customers </h1>
+
+<table width="100%">
+    <tr>
+        <th>EC2 Instance ID</th>
+        <th>CustomerID</th>
+        <th>Firstname</th>
+        <th>Lastname</th>
+        <th>Age</th>
+    </tr>
+
+    {{range $key, $singlestruct := $slicestructfrommain}}
+    <tr>
+            <td>{{$singlestruct.Insatnce_id}}</td>
+            <td>{{$singlestruct.Customer_id}}</td>
+            <td>{{$singlestruct.Customer_fname}}</td>
+            <td>{{$singlestruct.Customer_lname}}</td>
+            <td>{{$singlestruct.Customer_age}}</td>
+    </tr>
+    {{end}}
+
+</table>
+
+</body>
+</html>
+

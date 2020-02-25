@@ -1,0 +1,3 @@
+{{define "MyTemplate1"}}
+Value Received from Calling Template : {{.}}
+{{end}}

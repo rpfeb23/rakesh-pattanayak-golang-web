@@ -1,0 +1,17 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Hello Bond!</title>
+</head>
+<body>
+{{$structfrommain := .}}
+<h1>Hello {{$structfrommain.Name}} {{$structfrommain.Age}} </h1>
+<p>{{$structfrommain.Personfunc1}}</p>
+<p>{{$structfrommain.Personfunc2 $structfrommain.Name}}</p>
+<p>{{ $structfrommain.Personfunc2 $structfrommain.Name | $structfrommain.Personfunc3 $structfrommain.Age}}</p>
+
+</body>
+</html>
+

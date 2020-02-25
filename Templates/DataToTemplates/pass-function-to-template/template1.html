@@ -1,0 +1,17 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Pass Function to Template!</title>
+</head>
+<body>
+<h1>Got from Function Maps </h1>
+{{$fps := .}}
+{{range $index, $fp := $fps}}
+    {{name1 $fp.Age}}
+    {{name2 $fp.Lname $fp.Fname}}
+{{end}}
+</body>
+</html>
+

@@ -1,0 +1,14 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Hello Bond!</title>
+</head>
+<body>
+{{$input := .}}
+<h1>Direcly received {{$input}}</h1>
+<p>{{template "MyTemplate1" $input}}</p>
+</body>
+</html>
+
