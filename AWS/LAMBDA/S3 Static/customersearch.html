@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+
+</head>
+<body>
+<br>
+
+    <form id = "cidsearchform" method="get" onsubmit="loadcustomer()">
+        <label for="customerid">Customer ID</label>
+        <input type="number" id="cid" name="customerid">
+        <br>
+        <input type="button" onclick="loadcustomer() " value="Search">
+    </form>
+
+<br>
+<br>
+<a href="https://s3.amazonaws.com/rakeshpattanayak.com/index.html">index</a><br>
+<br>
+<div id="customerinfo"> </div>
+
+
+<script>
+    function loadcustomer() {
+        document.getElementById("cidsearchform").submit();
+        /*
+
+               var baseurl = "https://6r9gxm28i2.execute-api.us-east-1.amazonaws.com/Dev/customer";
+
+        var xmlhttp = new XMLHttpRequest();
+        xmlhttp.open("GET",baseurl + "?customerid=1000",true);
+        xmlhttp.onreadystatechange = function() {
+            if(xmlhttp.readyState ===4 && xmlhttp.status ===200){
+                var customer = JSON.parse(xmlhttp.responseText);
+                var tbltop = `<table>
+                <tr><th>Id</th><th>First Name</th><th>Last Name</th><th>Age</th></tr>`;
+                //main table content we fill from data from the rest call
+                var main ="";
+
+                main += "<tr><td>"+customer..customerid+"</td><td>"+customer.customefirstname+"</td><td>"+customer.customelastname+"</td><td>"+customer.customeage+"</td></tr>";
+
+                var tblbottom = "</table>";
+                var tbl = tbltop + main + tblbottom;
+                document.getElementById("customerinfo").innerHTML = tbl;
+            }
+        };
+        xmlhttp.send();
+         */
+    }
+</script>
+</body>
+</html>
