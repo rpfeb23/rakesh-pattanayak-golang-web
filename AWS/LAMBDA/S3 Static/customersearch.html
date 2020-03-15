@@ -3,6 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <title>Document</title>
+    <style>
+        table {
+            font-family: arial, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        td, th {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+
+        tr:nth-child(even) {
+            background-color: #dddddd;
+        }
+    </style>
 </head>
 <body>
 <br>
@@ -21,21 +38,28 @@
 
 <script type="text/javascript">
     function loadcustomer() {
-        var baseurl = "https://6r9gxm28i2.execute-api.us-east-1.amazonaws.com/Dev/customer";
+        var baseurl = "https://6r9gxm28i2.execute-api.us-east-1.amazonaws.com/Dev/customers/";
 
         var xmlhttp = new XMLHttpRequest();
-        xmlhttp.open("GET",baseurl + "?customerid=" + document.getElementById("cid").value,true);
+
+        xmlhttp.open("GET",baseurl + document.getElementById("cid").value,true);
         xmlhttp.onreadystatechange = function() {
-            if(xmlhttp.readyState ===4 && xmlhttp.status ===200){
-                var customer = JSON.parse(xmlhttp.responseText);
+
+            if(xmlhttp.readyState === XMLHttpRequest.DONE && xmlhttp.status ===200){
+                var customers = JSON.parse(xmlhttp.responseText);
+
                 var tbltop = `<table>
                      <tr><th>Id</th><th>First Name</th><th>Last Name</th><th>Age</th></tr>`;
                 var main ="";
-                main += "<tr><td>"+customer..customerid+"</td><td>"+customer.customefirstname+"</td><td>"+customer.customelastname+"</td><td>"+customer.customeage+"</td></tr>";
 
+                for (var i =0; i <customers.length; i++) {
+                    main += "<tr><td>" + customers[i].customerid + "</td><td>" + customers[i].customefirstname + "</td><td>" + customers[i].customelastname + "</td><td>" + customers[i].customeage + "</td></tr>";
+                }
                 var tblbottom = "</table>";
                 var tbl = tbltop + main + tblbottom;
                 document.getElementById("customerinfo").innerHTML = tbl;
+            }else {
+                document.getElementById("customerinfo").innerHTML =  xmlhttp.status ;
             }
         };
         xmlhttp.send();

@@ -1,42 +1,15 @@
 <!doctype html>
-    <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <title>Customer Serach</title>
-        <script>
-            var baseurl = "https://6r9gxm28i2.execute-api.us-east-1.amazonaws.com/Dev/customer";
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
 
-            function getCustomer() {
-
-                var xmlhttp = new XMLHttpRequest();
-                xmlhttp.open("GET", baseurl + "?customerid=1000", true);
-
-                xmlhttp.onreadystatechange = function () {
-                   if (xmlhttp.status ===200){
-
-                       var customer = JSON.parse(xmlhttp.responseText);
-                    var tabletop = '<table>' +
-                        '<tr><th>ID</th><th>FName</th><th>LName</th><th>Age</th></tr>';
-                    var maindata = "<tr><td>" + customer.customerid + "</td>"
-                          +"<td>" + customer.customefirstname + "</td>"
-                        +"<td>" + customer.customelastname + "</td>"
-                        +"<td>" + customer.customeage + "</td></tr>";
-                    var tablebottom = '</table>';
-
-                    var table = tabletop + maindata + tablebottom;
-                   // document.getElementById("customerinfo").innerHTML = table;
-                   }else {
-                       document.getElementById("customerinfo").innerHTML = xmlhttp.status;
-                   }
-                };
-                xmlhttp.send();
-            }
-        </script>
-    </head>
-    <body>
+<body>
 
 <br>
-    <form  method="get", onclick="getCustomer()">
+
+    <form method="POST" onsubmit="postcustomer()">
         <label for="firstName">First Name</label>
         <input type="text" id="firstName" name="first">
         <br>
@@ -46,11 +19,39 @@
         <label for="age">Age</label>
         <input type="number" id="age" name="age">
         <br>
-        <input type="submit">
+        <input type="button" onclick="postcustomer() " value="Submit">
     </form>
-
+<br>
+<br>
 <a href="https://s3.amazonaws.com/rakeshpattanayak.com/index.html">index</a><br>
+<br>
+<div id="newcustomer"> </div>
 
-    <div id = "customerinfo"></div>
-    </body>
+<script type="text/javascript">
+    function postcustomer() {
+        var baseurl = "https://6r9gxm28i2.execute-api.us-east-1.amazonaws.com/Dev/customers";
+
+        var xmlhttp = new XMLHttpRequest();
+
+        xmlhttp.open("POST",baseurl,true);
+        xmlhttp.setRequestHeader("Content-Type", "application/json");
+        xmlhttp.onreadystatechange = function() {
+
+            if(xmlhttp.status ===201){
+                var responsefromapi = JSON.parse(xmlhttp.responseText);
+                var display = "<h1>"+responsefromapi.Message + " : " + "<a href=" + responsefromapi.responseresource  + ">yourcreatedcustomer</a><br>" + "</h1>";
+                document.getElementById("newcustomer").innerHTML = display ;
+            }else {
+                document.getElementById("newcustomer").innerHTML =  xmlhttp.status ;
+            }
+        };
+
+        postrequestbody = {"customefirstname":document.getElementById("firstName").value,"customelastname":document.getElementById("lastName").value,"customeage":parseInt(document.getElementById("age").value)}
+
+        xmlhttp.send(JSON.stringify(postrequestbody));
+
+    }
+</script>
+
+</body>
 </html>
